@@ -209,10 +209,12 @@ if __name__ == "__main__":
     # TARGET_SCENE = "a large red square in the center, a small blue circle at the top_center, and a small green circle at the bottom_center"
     # TARGET_SCENE = "a yellow circle at the top_left, a yellow circle at the top_right, a yellow circle at the bottom_left, and a yellow circle at the bottom_right"
     # TARGET_SCENE = "a purple square, a red circle, and a green triangle"
+
     # --- Relational Chains ---
     # TARGET_SCENE = "a large black square in the middle_left, with a medium red square to its right, and a small blue square to the right of the red square"
-    TARGET_SCENE = "a large purple circle in the center, with a small red square above it, a small blue square below it, a small green square to its left, and a small yellow square to its right" # (needs fix)
+    # TARGET_SCENE = "a large purple circle in the center, with a small red square above it, a small blue square below it, a small green square to its left, and a small yellow square to its right" # (needs fix)
     # TARGET_SCENE = "a blue circle at the bottom_right and above it a square, with a yellow triangle to the left of the square"
+    
     # --- More Complex Scenarios & Edge Cases ---
     # TARGET_SCENE = "a large red circle at the center, with a small yellow circle overlapping_with it"
     # TARGET_SCENE = "a large red square in the center, and a large blue square in the center"
