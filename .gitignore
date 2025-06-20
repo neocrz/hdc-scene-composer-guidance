@@ -8,5 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+/tmp.md
 
 gif_frames/
