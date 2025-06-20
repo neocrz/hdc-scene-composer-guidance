@@ -73,7 +73,6 @@ def create_gif(frame_folder: str, output_filename: str):
         return
 
     frames = []
-    # Use a 'with' statement to ensure files are properly closed after being opened.
     for filename in frame_files:
         filepath = os.path.join(frame_folder, filename)
         try:
@@ -87,13 +86,13 @@ def create_gif(frame_folder: str, output_filename: str):
         print("Error: Frame images could not be processed.")
         return
 
-    # The first frame is the base, others are appended.
+    # The first frame is the base, others are appended.s
     frames[0].save(
         output_filename,
         save_all=True,
         append_images=frames[1:],
         optimize=False,
-        duration=500,  # Duration for each frame in ms
+        duration=500,
         loop=0         # Loop forever
     )
     print(f"Successfully created GIF: {output_filename}")
@@ -121,14 +120,14 @@ def main_loop(target_description: str, enable_visualization: bool = True, save_g
         else:
             os.makedirs(frame_folder)
 
-    # --- 1. Initialization ---
+    # --- Initialization ---
     lexicon = Lexicon()
     parser = SceneParser(lexicon)
     canvas = Canvas()
     scene_encoder = SceneEncoder(lexicon)
     agent = Agent(canvas)
     
-    # --- 2. Parse Target Description ---
+    # --- Parse Target Description ---
     parsed_description = parser.parse_description(target_description)
     if not parsed_description:
         print("Error: Could not parse the target description into any known objects. Exiting.")
@@ -136,10 +135,10 @@ def main_loop(target_description: str, enable_visualization: bool = True, save_g
     
     print(f"Parsed Description: {parsed_description}")
     
-    # --- 3. Initialize Guidance System with the Goal ---
+    # --- Initialize Guidance System with the Goal ---
     guidance_system = GuidanceSystem(lexicon, scene_encoder, parsed_description)
 
-    # --- 4. Initialize Visualizer (Optional) ---
+    # --- Initialize Visualizer ---
     visualizer = None
     if enable_visualization or save_gif:
         visualizer = Visualizer(canvas, config.CANVAS_WIDTH, config.CANVAS_HEIGHT)
@@ -147,7 +146,7 @@ def main_loop(target_description: str, enable_visualization: bool = True, save_g
         visualizer.update()
         time.sleep(0.5)
 
-    # --- 5. The Main Guidance Loop ---
+    # --- The Main Guidance Loop ---
     print("\n--- Starting Guidance Loop ---")
     frame_count = 0
     for i in range(config.MAX_ITERATIONS):
@@ -161,7 +160,7 @@ def main_loop(target_description: str, enable_visualization: bool = True, save_g
             if enable_visualization and i > 0:
                  time.sleep(0.5)
 
-        # A. Get the current scene state as a hypervector (important for caching on objects)
+        # A. Get the current scene state as a hypervector
         scene_encoder.encode_canvas_state(canvas)
         
         # B. Ask the guidance system for the next best action
@@ -175,10 +174,10 @@ def main_loop(target_description: str, enable_visualization: bool = True, save_g
         # D. Have the agent execute the proposed action
         agent.execute_action(action_command)
 
-    else: # This 'else' belongs to the 'for' loop, executed if the loop finishes without a 'break'
+    else:
         print("\nReached max iterations. Stopping.")
 
-    # --- 6. Final State ---
+    # --- Final State ---
     print("\n--- Final Canvas State ---")
     print(canvas)
     
@@ -195,7 +194,7 @@ def main_loop(target_description: str, enable_visualization: bool = True, save_g
             # If we only saved a gif without showing the UI, close the hidden window
             visualizer.root.destroy()
             
-    # --- 7. Compile GIF ---
+    # --- Compile GIF ---
     if save_gif:
         create_gif(frame_folder, "hdc-scene-composer-output.gif")
 
@@ -217,7 +216,6 @@ if __name__ == "__main__":
     # --- More Complex Scenarios & Edge Cases ---
     # TARGET_SCENE = "a large red circle at the center, with a small yellow circle overlapping_with it"
     # TARGET_SCENE = "a large red square in the center, and a large blue square in the center"
-    # Sizes
     # TARGET_SCENE = "a large circle at the top_left, and a small square at the bottom_right"
     # TARGET_SCENE = "a large black square at the center and a small red triangle at the top_left, with a medium blue circle to the right of the triangle, and a yellow square below the circle"
 
