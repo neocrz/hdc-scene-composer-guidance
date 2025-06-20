@@ -1,0 +1,11 @@
+[project]
+name = "hdc-scene-composer-guidance"
+version = "0.1.0"
+description = "Using brain-inspired Hyperdimensional Computing to guide a generative process toward a complex, compositional goal."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.3.0",
+    "pillow>=11.2.1",
+    "tk>=0.1.0",
+]
