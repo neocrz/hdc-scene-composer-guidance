@@ -52,7 +52,6 @@ The repository is organized into modular Python files, each with a specific resp
 -   `lexicon.py`: Creates and stores the primitive hypervectors for all known concepts.
 -   `hdc_utils.py`: Provides the core mathematical operations for HDC (binding, bundling, similarity).
 -   `config.py`: Contains all global configuration parameters.
--   `next_steps.md`: Discusses how this prototype's principles can be applied to future work.
 
 ---
 
